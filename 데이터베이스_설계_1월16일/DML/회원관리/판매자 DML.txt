@@ -1,0 +1,36 @@
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+--판매자 인덱스 시퀀스
+CREATE SEQUENCE SELLER_IDXNO
+INCREMENT BY 1
+START WITH 1;
+
+--판매자 등록번호 시퀀스
+CREATE SEQUENCE SELLER_PERNO
+INCREMENT BY 1
+START WITH 10;
+
+--<시퀀스 삭제 참고>
+DROP SEQUENCE SELLER_IDXNO;
+DROP SEQUENCE SELLER_PERNO;
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+UNIQUE 설정 eXERD 에서 설정 가능 ( 판매자 ID )
+
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+--셀러 회원가입
+INSERT INTO SELLER VALUES(SELLER_IDXNO.NEXTVAL,'IDIDIDID','00000',SELLER_PERNO.NEXTVAL,'회사명','경기도 안양시','EMAILL.COM','010-0000-0000','도매업',SYSDATE);
+
+--셀러 회원정보 수정
+UPDATE SELLER SET SELLER_ID='찐아이디'
+WHERE SELLER_IDX=1;
+
+--회원 탈퇴
+DELETE FROM SELLER
+WHERE SELLER_IDX = 1;
+
+--확인
+SELECT * FROM SELLER;
+
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+SELECT SELLER_NAME || '님, 로그인 하셨습니다.' FROM SELLER WHERE SELLER_ID = 'IDIDIDID' AND SELLER_PW = '00000';

@@ -1,0 +1,39 @@
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+--BUYER의 BUYER_IDX 값을 시퀀스 설정하여 중복값 제거하기. (시퀀스 생성 참고.)
+CREATE SEQUENCE BUYER_NO
+INCREMENT BY 1
+START WITH 1;
+
+DESC USER_SEQUENCES
+
+SELECT SEQUENCE_NAME, MIN_VALUE, MAX_VALUE,
+INCREMENT_BY, CYCLE_FLAG
+FROM USER_SEQUENCES;
+
+SELECT BUYER_NO.CURRVAL FROM DUAL;
+
+DROP SEQUENCE BUYER_NO;
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+UNIQUE 설정 eXERD 에서 설정 가능 ( 사용자 ID )
+
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+--사용자 회원가입
+INSERT INTO BUYER VALUES(BUYER_NO.NEXTVAL,'IDIDIDID','00000','이름','닉네임','성','경기도 안양시 관악구','000-000-0000','EMAIL@EMAIL.COM','2015-12-14',SYSDATE);
+
+--회원정보 수정
+UPDATE BUYER SET BUYER_ID='BUYERID'
+WHERE BUYER_IDX=1;
+
+--회원 탈퇴
+DELETE FROM BUYER
+WHERE BUYER_IDX = 1;
+
+--확인
+SELECT * FROM BUYER;
+
+★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+--로그인
+SELECT BUYER_NAME || '님, 로그인 하셨습니다.' FROM BUYER WHERE BUYER_ID = 'BUYERID' AND BUYER_PW = '00000';
+
